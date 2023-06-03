@@ -6,9 +6,9 @@ const AboutSection = () => {
     <>
       <div className="section">
         <div className="box">
-          <div className="p-16 bg-[#D7DCFF] relative rounded-[30px]">
+          <div className="px-6 py-8 lg:p-16 bg-[#D7DCFF] relative rounded-[30px]">
             <p className="text-3xl mb-6">About us</p>
-            <p className="fs-800">
+            <p className="lg:fs-800">
               With SineChat, you can create custom chatbots in minutes, with a
               drag-and-drop interface that allows you to customize your bot's
               personality, responses, and actions. Whether you're looking to
@@ -21,7 +21,7 @@ const AboutSection = () => {
               alt="logo"
               width={200}
               height={200}
-              className="absolute top-0 right-0 w-16 lg:w-48"
+              className="absolute top-0 right-0 w-24 lg:w-48"
             />
           </div>
         </div>

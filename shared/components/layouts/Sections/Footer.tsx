@@ -15,12 +15,12 @@ const Footer = () => {
             <Image
                 src="https://res.cloudinary.com/dic7regoe/image/upload/v1685766783/sinechat/Frame_128_1_fh5xlc.png"
                 alt="logo"
-                className="w-36 lg:w-80"
+                className="w-11/12 lg:w-80"
                 width={300}
                 height={300}
               />
             </div>
-            <div className="w-4/12 text-white">
+            <div className="lg:w-4/12 mt-16 lg:mt-0 text-white">
                 <p className="text-center fs-800">Get In Touch</p>
                 <ul className="flex gap-x-5 justify-center mt-6 ">
                   <li><Link href='/'><FaInstagram className="text-2xl"/></Link></li>
@@ -30,7 +30,7 @@ const Footer = () => {
                   <li><Link href='/'><AiOutlineMail className="text-2xl"/></Link></li>
                 </ul>
             </div>
-            <div className="w-4/12 text-center text-white">
+            <div className="lg:w-4/12 mt-16 lg:mt-0 text-center text-white">
                 <p className="fs-800"><Link href='/'>Privacy Policy</Link></p>
                 <p className="mt-4 fs-800"><Link href='/'>Terms of Service</Link></p>
             </div>

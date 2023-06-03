@@ -30,11 +30,11 @@ const FaqSection = () => {
     <>
       <div className="section pt-0">
         <div className="box">
-          <div className="bg-[#E3F9FF] relative lg:p-16 rounded-[30px]">
+          <div className="bg-[#E3F9FF] relative py-8 lg:p-16 rounded-[30px]">
             <p className="text-2xl lg:text-4xl fw-600 pb-16 fw-600 text-center">
               Frequently Asked Questions
             </p>
-            <div className="text-white pb-12 w-9/12 mx-auto">
+            <div className="text-white pb-12 w-11/12 lg:w-9/12 mx-auto">
               <Accordion>
                 {data.map((item, index) => (
                   <AccordionItem key={index}>

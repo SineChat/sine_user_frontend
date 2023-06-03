@@ -5,13 +5,13 @@ import React from "react";
 const ServicesSection = () => {
   return (
     <>
-      <div className="section">
+      <div className="section pb-0 lg:pb-24">
         <div className="box">
           <div>
             {/* Why SineChat? */}
             <div className="w-11/12  mx-auto">
               <p className="text-center text-2xl lg:text-4xl">Why SineChat?</p>
-              <div className="mt-16 lg:grid grid-cols-3 gap-x-12">
+              <div className="mt-16 grid lg:grid-cols-3 gap-x-12 gap-y-12">
                 <div>
                   <div className="contain-icon">
                     <Image
@@ -73,9 +73,9 @@ const ServicesSection = () => {
               <p  className="text-center text-2xl lg:text-4xl lg:py-8">
                 What can you do with our no-code chatbot builder
               </p>
-              <div className="mt-12 lg:grid grid-cols-2 gap-x-12">
+              <div className="mt-12 grid lg:grid-cols-2 gap-x-12 gap-y-12">
                 <div className="bg-secondary rounded-[20px]">
-                  <div className="p-10 lg:pt-24 w-11/12 mx-auto text-center">
+                  <div className="p-10 lg:pt-24 lg:w-11/12 mx-auto text-center">
                     <p className="text-xl lg:text-3xl text-center mb-8">
                       {" "}
                       Integrate your chatbot with popular messaging apps like
@@ -96,7 +96,7 @@ const ServicesSection = () => {
                   </div>
                 </div>
                 <div className="bg-[#E0FFEA] rounded-[20px]">
-                  <div className="p-10 lg:pt-24 w-11/12 mx-auto text-center">
+                  <div className="p-10 lg:pt-24 lg:w-11/12 mx-auto text-center">
                     <p className="text-xl lg:text-3xl text-center mb-8">
                       {" "}
                       Create a Chatbot: Easily create a chatbot for your website or social media platforms.
