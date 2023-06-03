@@ -24,32 +24,10 @@ const Button: React.FC<Props> = ({
   isBusy,
 }) => {
   return (
-    <div
-      className={
-        altClassName
-          ? ""
-          : classNames(
-              secondary
-                ? " fs-300 lg:fs-500 border-btn rounded fw-500"
-                : " mt-10 lg:mt-10",
-              className as string
-            )
-      }
-    >
-      <button
-        onClick={onClick ? onClick : undefined}
-        className={
-          altClassName ||
-          (secondary
-            ? "w-full py-2 px-3"
-            : disabled
-            ? "btn-disabled fw-500 py-2 w-full"
-            : "btn-primary fw-800 w-full py-2")
-        }
-        disabled={disabled || isBusy}
-      >
-        {isBusy ? (
-          "Loading"
+    <div className={disabled? "opacity-75 " : ""}>
+      <button className={altClassName || `py-3 lg:text-lg w-full btn-primary ${disabled? 'cursor-not-allowed btn-disabled' : ''}`} onClick={onClick ? onClick : undefined} disabled={disabled}>
+      {isBusy ? (
+          "loading"
         ) : capitalizeTitle ? (
           title.toUpperCase()
         ) : (

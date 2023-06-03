@@ -111,6 +111,26 @@ const TextInput: React.FC<Props> = ({
             {...rest}
           />
         );
+        case InputType.checkbox:
+          return (
+            <input type="checkbox"
+            className={
+              altClassName ||
+              classNames(fullWidth ? "" : "p-2", className)
+            }
+            name={name}
+            required={required}
+            onChange={onChange}
+            placeholder={placeholder}
+            disabled={disabled}
+            maxLength={maxLength}
+            autoFocus={autoFocus}
+            onFocus={onFocus}
+            autoComplete={autoComplete}
+            autoCapitalize={autoCapitalize}
+            ref={inputRef}
+            {...rest}/>
+          )
 
       default:
         return (
@@ -160,9 +180,9 @@ const TextInput: React.FC<Props> = ({
         </>
       </div>
       <div
-        className={classNames(
-          error ? "border-red-400" : "border-gray-400",
-          "flex items-center bg-input border mt-1 rounded"
+        className={classNames(type === InputType.checkbox? "" :
+          error ? "border-red-400 border" : "border border-gray-400",
+          "flex items-center bg-input  mt-1 rounded"
         )}
       >
         {renderInputType()}

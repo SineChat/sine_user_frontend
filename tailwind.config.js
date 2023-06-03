@@ -19,7 +19,7 @@ module.exports = {
         '05': "80vh"
       },
       backgroundImage: {
-        refer: "url('https://res.cloudinary.com/das90kzig/image/upload/v1678511960/Refer_1_bphjfn.png')",
+        about: "url('https://res.cloudinary.com/dic7regoe/image/upload/v1685763261/sinechat/Testimonials_fpwvzz.png')",
         list: "url('https://res.cloudinary.com/das90kzig/image/upload/v1678511951/Make_a_list_banner_1_1_ean22f.png')",
       },
       gridTemplateColumns: {
