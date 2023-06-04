@@ -4,7 +4,7 @@ const nextConfig = {
   output: "export",
   images: {
     loader: "cloudinary",
-    path: "/",
+    path: "",
     remotePatterns: [
       {
         protocol: "https",
