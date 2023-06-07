@@ -20,7 +20,7 @@ module.exports = {
       },
       backgroundImage: {
         about: "url('https://res.cloudinary.com/dic7regoe/image/upload/v1685763261/sinechat/Testimonials_fpwvzz.png')",
-        list: "url('https://res.cloudinary.com/das90kzig/image/upload/v1678511951/Make_a_list_banner_1_1_ean22f.png')",
+        integration: "url('https://res.cloudinary.com/dic7regoe/image/upload/v1686119272/sinechat/Frame_3233207_djcf13.png')",
       },
       gridTemplateColumns: {
         fluid: "repeat(auto-fit,minmax(15rem,1fr))",

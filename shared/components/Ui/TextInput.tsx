@@ -13,6 +13,7 @@ export enum InputType {
   textarea = "textarea",
   number = "number",
   checkbox = "checkbox",
+  search= "search"
 }
 
 interface Props {

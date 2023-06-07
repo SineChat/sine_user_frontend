@@ -320,7 +320,7 @@ input[type="checkbox"]:checked {
     box-shadow: rgba(0, 0, 0, 0.1) 1.95px 1.95px 2.6px;
   }
   .btn-primary:hover,
-  .btn-feel:hover {
+  .btn-feel:hover, .btn-like:hover {
     background: #14ab50;
     transform: scale(1.05);
     transition: 0.6s;
@@ -331,6 +331,13 @@ input[type="checkbox"]:checked {
     font-weight: 500;
     padding: 15px 30px;
     border-radius: 6px 6px 6px 0px;
+  }
+  .btn-like {
+    background: #1e944d;
+    color: white;
+    font-weight: 500;
+    padding: 10px 30px;
+    border-radius: 5px;
   }
   .shades {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -356,5 +363,8 @@ input[type="checkbox"]:checked {
   }
   .curved-style{
      border-radius: 10px 10px 10px 0px;
+  }
+  .brown{
+    color: #333333;
   }
 }
