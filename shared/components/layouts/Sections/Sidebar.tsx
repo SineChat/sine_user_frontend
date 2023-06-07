@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {FC} from 'react'
 import Image from 'next/image';
 import Link from 'next/link';
 import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
@@ -10,12 +10,17 @@ import { FiCreditCard } from 'react-icons/fi';
 import { AiOutlinePieChart } from 'react-icons/ai';
 import { TbBuildingEstate } from 'react-icons/tb';
 
-const SidebarLayout = () => {
+interface Props {
+  setToggled: (value: boolean | ((prevVar: boolean) => boolean)) => void;
+  toggled:boolean,
+}
+const SidebarLayout:FC<Props>  = ({setToggled, toggled}) => {
   return (
     <div className="left-0 top-0 fixed index-30 h-screen bg-[#0B1B2B]">
       <Sidebar
         customBreakPoint="960px"
         className="h-screen w-64 fs-700 fw-500 text-white "
+        onBackdropClick={() => setToggled(false)} toggled={toggled}
         backgroundColor="linear-gradient(90deg, #6B5AED 0%, #8D7EFF 100%)"
       >
         <div className="pb-5">

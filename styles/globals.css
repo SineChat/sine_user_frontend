@@ -137,6 +137,9 @@ input[type="checkbox"]:checked {
   width: 0px;
   height: 0px;
 }
+.ps-sidebar-root{
+  background: #0B1B2B;
+}
 @layer components {
   /* container settings */
   .box {
