@@ -342,6 +342,13 @@ input[type="checkbox"]:checked {
     padding: 10px 30px;
     border-radius: 5px;
   }
+  .btn-sec{
+    color: #1E944D;
+    font-weight: 500;
+    padding: 10px 30px;
+    border-radius: 5px;
+    border: 2px solid #1E944D;
+  }
   .shades {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   }
@@ -369,5 +376,8 @@ input[type="checkbox"]:checked {
   }
   .brown{
     color: #333333;
+  }
+  .gray{
+    color:#677684
   }
 }

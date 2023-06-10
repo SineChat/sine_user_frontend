@@ -18,7 +18,7 @@ const IntegrationHome: AppPage = () => {
           </div>
         </div>
         {/* content */}
-        <div className="mt-12">
+        <div className="my-12">
           {/* available integrations */}
           <div>
             <div>
@@ -266,10 +266,10 @@ const IntegrationHome: AppPage = () => {
               </div>
             </div>
           </div>
-          <div className="bg-integration h-[300px] lg:bg-fit mt-12 lg:p-12 flex items-center">
+          <div className="bg-integration h-[300px]  lg:bg-fit mt-12 p-6 lg:p-12 flex items-center">
             <div className="w-8/12 lg:w-5/12 text-white">
-                <p className="text-2xl">Can’t find what you’re looking for?</p>
-                <p className="mt-3 opacity-75">Please let us know of any integration that can help make your work easier and we will evaluate it</p>
+                <p className="fs-800 lg:text-2xl">Can’t find what you’re looking for?</p>
+                <p className="mt-3 opacity-75 fs-400 lg:fs-500">Please let us know of any integration that can help make your work easier and we will evaluate it</p>
                 <div className="mt-7">
                     <Link href='/user' className="btn-like">Submit a request</Link>
                 </div>

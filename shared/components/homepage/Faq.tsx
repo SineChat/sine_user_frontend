@@ -30,7 +30,7 @@ const FaqSection = () => {
     <>
       <div className="section pt-0">
         <div className="box">
-          <div className="bg-[#E3F9FF] relative py-8 lg:p-16 rounded-[30px]">
+          <div className="bg-[#E3F9FF] relative py-8 lg:p-16 rounded-[20px] lg:rounded-[30px]">
             <p className="text-2xl lg:text-4xl fw-600 pb-16 fw-600 text-center">
               Frequently Asked Questions
             </p>
@@ -62,7 +62,7 @@ const FaqSection = () => {
               alt="logo"
               width={200}
               height={200}
-              className="absolute bottom-0 right-0 w-16 lg:w-40"
+              className="absolute bottom-0 right-0 w-20 lg:w-40"
             />
           </div>
         </div>
