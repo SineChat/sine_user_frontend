@@ -54,7 +54,7 @@ const SidebarLayout:FC<Props>  = ({setToggled, toggled}) => {
           }}
         >
             <MenuItem
-            component={<Link href="/user/home" />}
+            component={<Link href="/user" />}
             icon={<TbBuildingEstate className='text-xl' />}
           >
            Home
@@ -72,19 +72,19 @@ const SidebarLayout:FC<Props>  = ({setToggled, toggled}) => {
             Integrations
           </MenuItem>
           <MenuItem
-            component={<Link href="/dashboard" />}
+            component={<Link href="/user/metric" />}
             icon={<AiOutlinePieChart className='text-xl'/>}
           >
             Metric
           </MenuItem>
           <MenuItem
-            component={<Link href="/spend" />}
+            component={<Link href="/user/subscription" />}
             icon={<FiCreditCard className='text-xl' />}
           >
             Subscription
           </MenuItem>
           <MenuItem
-            component={<Link href="/spend" />}
+            component={<Link href="/user/settings" />}
             icon={<BsGear className='text-xl' />}
           >
             Settings

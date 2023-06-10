@@ -5,8 +5,8 @@ import React from "react";
 const HeroSection = () => {
   return (
     <>
-      <div className="box pt-2 pb-8">
-        <div className="bg-secondary pt-5 px-3 lg:px-12 lg:flex flex-row-reverse items-center rounded-[30px]">
+      <div className="box lg:pt-36 pt-20 pb-8">
+        <div className="bg-secondary pt-5 px-3 lg:px-12 lg:flex flex-row-reverse items-center rounded-[20px] lg:rounded-[30px]">
           <div className="lg:w-6/12">
             <Image
               src="https://res.cloudinary.com/dic7regoe/image/upload/v1685763263/sinechat/Group_43454_1_1_knxifc.png"

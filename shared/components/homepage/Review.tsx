@@ -5,7 +5,7 @@ const ReviewSection = () => {
     <>
       <div className="section py-0">
         <div className="box">
-          <div className="bg-review rounded-[30px]">
+          <div className="bg-review rounded-[20px] lg:rounded-[30px]">
             <div className="py-16 text-center">
               <p className="fw-600 text-2xl lg:text-4xl">
                 What Our Customers Say

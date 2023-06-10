@@ -6,7 +6,7 @@ const WorksSection = () => {
     <>
       <div className="section pt-0">
         <div className="box">
-          <div className="bg-works rounded-[30px]">
+          <div className="bg-works rounded-[20px] lg:rounded-[30px]">
             <p className="text-center text-2xl lg:text-4xl lg:py-20 py-10">
               How It Works
             </p>

@@ -5,9 +5,9 @@ import Link from "next/link";
 const Header = () => {
   return (
     <>
-      <div className="py-2 lg:py-4">
-        <div className="box rounded-[50px] bg-[#0B1B2B] p-2">
-          <div className="flex items-center justify-between lg:py-5 px-3 lg:px-8">
+      <div className="py-2 lg:py-4 fixed w-full z-20">
+        <div className="md:box mx-3 rounded-[50px] bg-[#0B1B2B] p-2">
+          <div className="flex items-center justify-between py-1 lg:py-5 pl-3 pr-1 lg:px-8">
             <div className="logo">
               <Image
                 src="https://res.cloudinary.com/dic7regoe/image/upload/v1685766783/sinechat/Frame_128_1_fh5xlc.png"
