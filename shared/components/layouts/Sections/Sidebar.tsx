@@ -9,18 +9,23 @@ import { FaLink } from 'react-icons/fa';
 import { FiCreditCard } from 'react-icons/fi';
 import { AiOutlinePieChart } from 'react-icons/ai';
 import { TbBuildingEstate } from 'react-icons/tb';
+import useModal from '@/hooks/useModal';
+import LogoutModal from '../../user/index/modals/Logout';
 
 interface Props {
   setToggled: (value: boolean | ((prevVar: boolean) => boolean)) => void;
   toggled:boolean,
 }
 const SidebarLayout:FC<Props>  = ({setToggled, toggled}) => {
+
+  const {Modal, setShowModal} = useModal()
   return (
     <div className="left-0 top-0 fixed index-30 h-screen bg-[#0B1B2B]">
       <Sidebar
         customBreakPoint="960px"
         className="h-screen w-64 fs-700 fw-500 text-white "
-        onBackdropClick={() => setToggled(false)} toggled={toggled}
+        onClick={() => setToggled(false)} 
+        toggled={toggled}
         backgroundColor="linear-gradient(90deg, #6B5AED 0%, #8D7EFF 100%)"
       >
         <div className="pb-5">
@@ -92,15 +97,15 @@ const SidebarLayout:FC<Props>  = ({setToggled, toggled}) => {
           <MenuItem
             className="mt-24"
             icon={<TfiShiftLeft className='text-xl' />}
-            // onClick={() => setShowModal(true)}
+            onClick={() => setShowModal(true)}
           >
             Logout
           </MenuItem>
         </Menu>
       </Sidebar>
-      {/* <Modal title="" noHead>
+      <Modal title="" noHead>
         <LogoutModal CloseModal={() => setShowModal(false)} />
-      </Modal> */}
+      </Modal>
     </div>
   )
 }

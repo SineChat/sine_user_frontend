@@ -1,10 +1,12 @@
 import Button from "@/shared/components/Ui/Button";
 import { AppPage } from "@/shared/components/layouts/Types";
+import { useAppSelector } from "@/shared/redux/store";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 const DashboardHome: AppPage = () => {
+  const user = useAppSelector((state) => state.user.user)
   return (
     <>
       <div className="text-black">
@@ -13,7 +15,7 @@ const DashboardHome: AppPage = () => {
         </div>
         <div className="w-full mt-16 flex justify-center">
           <div>
-            <p className="text-2xl lg:text-6xl">Hello, Chigozie</p>
+            <p className="text-2xl lg:text-6xl">Hello, {user.firstname}</p>
             <div className="mt-5 flex items-center">
               <div className="flex">
                 <Image

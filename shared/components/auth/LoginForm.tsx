@@ -3,9 +3,20 @@ import { Controller, useForm } from "react-hook-form";
 import TextInput, { InputType } from "../Ui/TextInput";
 import Button from "../Ui/Button";
 import Link from "next/link";
+import { toast } from "react-toastify";
+import { useLazyLoginQuery } from "@/services/api/authSlice";
+import { useAppDispatch } from "@/shared/redux/store";
+import { saveUser } from "@/shared/redux/reducers/userSlice";
+import { extractCallBackRoute, storeLocalToken } from "@/services/helpers";
+import { useRouter } from "next/router";
+import { Url } from "next/dist/shared/lib/router/router";
+import { ScaleSpinner } from "../Ui/Loaders";
 
 const LoginForm = () => {
   const [isBusy, setIsBusy] = useState(false);
+  const [login] = useLazyLoginQuery()
+  const dispatch = useAppDispatch()
+  const router = useRouter()
   const {
     control,
     handleSubmit,
@@ -14,16 +25,43 @@ const LoginForm = () => {
   } = useForm({
     mode: "onChange",
     defaultValues: {
-      user: "",
+      email: "",
       password: "",
     },
   });
+
+  const onSubmit = async (data:any) => {
+    setIsBusy(true);
+    await login(data)
+      .then((res:any) => {
+        if (res.data.status === "success") {
+          dispatch(
+            saveUser({
+                token: res.data.data.token,
+                firstname: res.data.data.user.firstname,
+                lastname: res.data.data.user.lasttname,
+                id: res.data.data.user.id,
+                email: res.data.data.user.email,
+          }))
+          storeLocalToken("token", res.data.data.token) 
+          toast.success(res.data.message)
+          router.push(extractCallBackRoute(router.asPath) as Url);
+        }else {
+          toast.error(res.error.data.message);
+          setIsBusy(false);
+        }
+      })
+      .catch((err) => {
+        toast.error(err?.error?.data?.message);
+        setIsBusy(false);
+      });
+  };
   return (
     <div>
-      <form className="fs-700">
+      <form className="" onSubmit={handleSubmit(onSubmit)} >
         <div>
           <Controller
-            name="user"
+            name="email"
             control={control}
             rules={{
               required: {
@@ -35,7 +73,7 @@ const LoginForm = () => {
               <TextInput
                 label="Email"
                 placeholder="victorchigozie@gmail.com"
-                error={errors.user?.message}
+                error={errors.email?.message}
                 type={InputType.email}
                 {...field}
               />
@@ -78,7 +116,7 @@ const LoginForm = () => {
             <Link href='/auth/forget-password' className=" text-primary">Forget Password?</Link>
         </div>
         <div className="mt-12">
-          <Button title={isBusy ? "loading" : "Login"} disabled={!isValid} />
+          <Button title={isBusy ? <ScaleSpinner size={14} color="white"/> : "Login"} disabled={!isValid} />
         </div>
       </form>
     </div>

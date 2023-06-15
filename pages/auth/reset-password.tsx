@@ -3,9 +3,13 @@ import LoginForm from "@/shared/components/auth/LoginForm";
 import { AppPage } from "@/shared/components/layouts/Types";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React from "react";
 
 const ResetPassword: AppPage = () => {
+  const router = useRouter();
+  const email = router.query.email
+  
   return (
     <>
       <div className="box py-16">

@@ -1,8 +1,10 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useAppSelector } from "@/shared/redux/store";
 
 const Header = () => {
+  const auth = useAppSelector((state) => state.user.user.token);
   return (
     <>
       <div className="py-2 lg:py-4 fixed w-full z-20">
@@ -17,9 +19,26 @@ const Header = () => {
                 height={100}
               />
             </div>
-            <div>
-              <Link href='/auth/login' className="bg-primary block fs-400 lg:fs-600 text-white py-1 px-3 lg:px-4 lg:py-2 rounded-[20px] hover:scale-105 duration-100">Try  SineChat Free</Link>
-            </div>
+            {!auth && (
+              <div>
+                <Link
+                  href="/auth/login"
+                  className="bg-primary block fs-400 lg:fs-600 text-white py-1 px-3 lg:px-4 lg:py-2 rounded-[20px] hover:scale-105 duration-100"
+                >
+                  Try SineChat Free
+                </Link>
+              </div>
+            )}
+            {auth && (
+              <div>
+                <Link
+                  href="/user"
+                  className="bg-primary block fs-400 lg:fs-600 text-white py-1 px-3 lg:px-4 lg:py-2 rounded-[20px] hover:scale-105 duration-100"
+                >
+                  Dashboard
+                </Link>
+              </div>
+            )}
           </div>
         </div>
       </div>
