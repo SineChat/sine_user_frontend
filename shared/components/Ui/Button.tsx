@@ -3,7 +3,7 @@ import { classNames } from "@/shared/utils/format";
 
 
 interface Props {
-  title: string;
+  title: string | JSX.Element;
   onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined;
   capitalizeTitle?: boolean;
   secondary?: boolean;

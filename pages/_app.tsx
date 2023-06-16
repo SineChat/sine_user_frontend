@@ -2,6 +2,7 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { persistor, store } from '@/shared/redux/store';
 import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { Layouts } from '@/shared/components/layouts/Layout';
 import { MyAppProps } from '@/shared/components/layouts/Types';
 import '@/styles/globals.css'

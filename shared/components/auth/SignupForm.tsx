@@ -2,31 +2,73 @@ import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import TextInput, { InputType } from "../Ui/TextInput";
 import Button from "../Ui/Button";
-import Link from "next/link";
+import { useRegisterMutation, useRequestVerificationMutation } from "@/services/api/authSlice";
+import { useRouter } from "next/router";
+import { toast } from "react-toastify";
+import { ScaleSpinner } from "../Ui/Loaders";
 
 const SignupForm = () => {
   const [isBusy, setIsBusy] = useState(false);
+  const [signup] = useRegisterMutation();
+  const [sendVerify] = useRequestVerificationMutation()
+  const router = useRouter();
   const {
     control,
+    watch,
     handleSubmit,
     setError,
     formState: { errors, isValid },
   } = useForm({
     mode: "onChange",
     defaultValues: {
-      user: "",
-      fname: "",
-      lname: "",
+      email: "",
+      firstname: "",
+      lastname: "",
       password: "",
-      confirm_password: ""
+      confirm_password: "",
+      terms: false,
     },
   });
+
+  const onSubmit = async (data:any) => {
+    setIsBusy(true);
+    await signup(data)
+      .then((res:any) => {
+        if (res.data.status === "success") {
+          router.push(`/auth/signup-success?email=${data.email}`);
+          const payload = {
+            email: data.email,
+            redirect_url: "http://https://www.sinechat.com/auth/verify-email"
+          }
+          sendVerify(payload)
+          .then((res:any) => {
+            if(res.data.status === "success"){
+              // toast.success(res.data.message);
+            }else{
+              toast.error(res?.error?.data.message)
+            }
+          })
+          .catch(() => {})
+          toast.success(res.data.message);
+          setIsBusy(false);
+        }else {
+          toast.error(res.error.data.message);
+          setIsBusy(false);
+        }
+      })
+      .catch((err) => {
+        toast.error(err?.error?.data?.message);
+        toast.error("Registration Failed");
+        setIsBusy(false);
+      });
+  };
+
   return (
     <div>
-      <form className="fs-700">
+      <form onSubmit={handleSubmit(onSubmit)}  className="fs-600">
         <div>
           <Controller
-            name="user"
+            name="email"
             control={control}
             rules={{
               required: {
@@ -38,7 +80,7 @@ const SignupForm = () => {
               <TextInput
                 label="Email Address"
                 placeholder="victorchigozie@gmail.com"
-                error={errors.user?.message}
+                error={errors.email?.message}
                 type={InputType.email}
                 {...field}
               />
@@ -47,7 +89,7 @@ const SignupForm = () => {
         </div>
         <div className="mt-6">
           <Controller
-            name="fname"
+            name="firstname"
             control={control}
             rules={{
               required: {
@@ -59,8 +101,8 @@ const SignupForm = () => {
               <TextInput
                 label="First Name"
                 placeholder="victor"
-                error={errors.user?.message}
-                type={InputType.email}
+                error={errors.firstname?.message}
+                type={InputType.text}
                 {...field}
               />
             )}
@@ -68,7 +110,7 @@ const SignupForm = () => {
         </div>
         <div className="mt-6">
           <Controller
-            name="lname"
+            name="lastname"
             control={control}
             rules={{
               required: {
@@ -80,8 +122,8 @@ const SignupForm = () => {
               <TextInput
                 label="Last Name"
                 placeholder="Smith"
-                error={errors.user?.message}
-                type={InputType.email}
+                error={errors.lastname?.message}
+                type={InputType.text}
                 {...field}
               />
             )}
@@ -125,29 +167,50 @@ const SignupForm = () => {
                 value: 5,
                 message: "Password is too short",
               },
+              validate: (value) =>
+                value === watch("password") || "Passwords do not match",
             }}
             render={({ field }) => (
               <TextInput
                 label="Confirm Password"
                 placeholder="*********"
-                error={errors.password?.message}
+                error={errors.confirm_password?.message}
                 type={InputType.password}
                 {...field}
               />
             )}
           />
         </div>
-        <div className="flex items-end justify-between">
-            <div className="flex pb-2 gap-x-2 items-end">
-            <TextInput
-                type={InputType.checkbox}
-                altClassName=" border-0"
-              />
-              <p className="relative -bottom-[6px]">By creating account, you agree to SineChat Privacy Policy</p>
-            </div>
+        <div className="flex items-end justify-between mt-4 lg:mt-0">
+          <div className="flex pb-2 gap-x-2 lg:items-end">
+            <Controller
+              name="terms"
+              control={control}
+              rules={{
+                required: {
+                  value: true,
+                  message: "",
+                },
+              }}
+              render={({ field }) => (
+                <TextInput
+                  type={InputType.checkbox}
+                  altClassName=" border-0"
+                  required
+                  {...field}
+                />
+              )}
+            />
+            <p className="relative -bottom-[6px]">
+              By creating account, you agree to SineChat Privacy Policy
+            </p>
+          </div>
         </div>
         <div className="mt-12">
-          <Button title={isBusy ? "loading" : "Complete Account Setup"} disabled={!isValid} />
+          <Button
+            title={isBusy ? <ScaleSpinner size={14} color="white"/> : "Complete Account Setup"}
+            disabled={!isValid}
+          />
         </div>
       </form>
     </div>

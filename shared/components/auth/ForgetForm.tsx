@@ -1,11 +1,17 @@
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import TextInput, { InputType } from "../Ui/TextInput";
 import Button from "../Ui/Button";
-import Link from "next/link";
+import { useFogetPasswordMutation } from "@/services/api/authSlice";
+import { toast } from "react-toastify";
+import { ScaleSpinner } from "../Ui/Loaders";
 
-const ForgetForm = () => {
+interface Props {
+  showReset: () => void
+}
+const ForgetForm:FC<Props> = ({showReset}) => {
   const [isBusy, setIsBusy] = useState(false);
+  const [forgetPass] = useFogetPasswordMutation()
   const {
     control,
     handleSubmit,
@@ -17,9 +23,27 @@ const ForgetForm = () => {
       email: "",
     },
   });
+  const onSubmit = async (data:any) => {
+    setIsBusy(true);
+    await forgetPass(data)
+      .then((res:any) => {
+        if (res.data.status === "success") {
+          toast.success(res.data.message)
+          setIsBusy(false);
+          showReset()
+        }else {
+          toast.error(res.error.data.message);
+          setIsBusy(false);
+        }
+      })
+      .catch((err) => {
+        toast.error(err?.error?.data?.message);
+        setIsBusy(false);
+      });
+  };
   return (
     <div>
-      <form className="fs-700">
+      <form onSubmit={handleSubmit(onSubmit)} className="fs-600">
         <div>
           <Controller
             name="email"
@@ -42,7 +66,7 @@ const ForgetForm = () => {
           />
         </div>
         <div className="mt-12">
-          <Button title={isBusy ? "loading" : "Login"} disabled={!isValid} />
+          <Button title={isBusy ? <ScaleSpinner size={14} color="white"/> : "Continue"} disabled={!isValid} />
         </div>
       </form>
     </div>

@@ -55,10 +55,10 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active {
 }
 /* checked input */
 input[type="radio"]:checked {
-  accent-color: #b3561b !important;
+  accent-color: #1e944d !important;
 }
 input[type="checkbox"]:checked {
-  accent-color: #b3561b !important;
+  accent-color: #1e944d !important;
 }
 
 /* target all bullets */
@@ -113,11 +113,11 @@ input[type="checkbox"]:checked {
   }
 }
 .border-btn {
-  border: 2px solid #b3561b;
-  color: #b3561b;
+  border: 2px solid #1e944d;
+  color: #1e944d;
 }
 .border-btn:hover {
-  background-color: #b3561b;
+  background-color: #1e944d;
   color: white;
   transition: 0.3s;
 }
@@ -139,6 +139,17 @@ input[type="checkbox"]:checked {
 }
 .ps-sidebar-root{
   background: #0B1B2B;
+}
+.scale-ani {
+  animation: scale .5 ease-in-out;
+}
+@keyframes scale {
+  from{
+    transform: scale(0);
+  }
+  to{
+    transform: scale(1);
+  }
 }
 @layer components {
   /* container settings */

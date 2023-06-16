@@ -3,8 +3,11 @@ import { AppPage } from '@/shared/components/layouts/Types'
 import { BiSearch } from 'react-icons/bi'
 import Link from 'next/link'
 import EmptyState from '@/shared/components/Ui/EmptyState'
+import { useAppSelector } from '@/shared/redux/store'
 
 const Dashboard:AppPage = () => {
+
+  const user = useAppSelector((state) => state.user.user)
   return (
     <>
       <div className="text-black">
