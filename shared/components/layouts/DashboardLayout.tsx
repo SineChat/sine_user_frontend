@@ -3,6 +3,7 @@ import SidebarLayout from "./Sections/Sidebar";
 import Image from "next/image";
 import Link from "next/link";
 import { RiMenu3Line } from 'react-icons/ri';
+import AddAuth from "./addAuth";
 
 const DashboardLayout = ({ children }: PropsWithChildren) => {
 
@@ -34,4 +35,4 @@ const DashboardLayout = ({ children }: PropsWithChildren) => {
   );
 };
 
-export default DashboardLayout;
+export default AddAuth(DashboardLayout);
