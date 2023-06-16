@@ -1,5 +1,6 @@
 import ForgetForm from "@/shared/components/auth/ForgetForm";
 import LoginForm from "@/shared/components/auth/LoginForm";
+import ResetForm from "@/shared/components/auth/ResetForm";
 import { AppPage } from "@/shared/components/layouts/Types";
 import Image from "next/image";
 import Link from "next/link";
@@ -25,10 +26,10 @@ const ResetPassword: AppPage = () => {
           </Link>
           <div className="text-center mt-8 lg:mt-16">
                 <p className="text-xl lg:text-3xl ">Reset Password</p>
-                <p className="mt-4">Enter your new password below</p>
+                <p className="mt-4">Use your email or phone number to receive an OTP to reset your password</p>
           </div>
           <div className="mt-8 lg:mt-16 lg:w-11/12 mx-auto">
-            <ForgetForm/>
+            <ResetForm/>
           </div>
         </div>
       </div>

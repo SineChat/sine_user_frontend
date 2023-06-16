@@ -140,6 +140,17 @@ input[type="checkbox"]:checked {
 .ps-sidebar-root{
   background: #0B1B2B;
 }
+.scale-ani {
+  animation: scale .5 ease-in-out;
+}
+@keyframes scale {
+  from{
+    transform: scale(0);
+  }
+  to{
+    transform: scale(1);
+  }
+}
 @layer components {
   /* container settings */
   .box {

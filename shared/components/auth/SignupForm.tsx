@@ -38,7 +38,7 @@ const SignupForm = () => {
           router.push(`/auth/signup-success?email=${data.email}`);
           const payload = {
             email: data.email,
-            redirect_url: "http://localhost:3000/auth/verify-email"
+            redirect_url: "http://https://www.sinechat.com/auth/verify-email"
           }
           sendVerify(payload)
           .then((res:any) => {

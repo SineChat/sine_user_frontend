@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import TextInput, { InputType } from "../Ui/TextInput";
 import Button from "../Ui/Button";
@@ -6,7 +6,10 @@ import { useFogetPasswordMutation } from "@/services/api/authSlice";
 import { toast } from "react-toastify";
 import { ScaleSpinner } from "../Ui/Loaders";
 
-const ForgetForm = () => {
+interface Props {
+  showReset: () => void
+}
+const ForgetForm:FC<Props> = ({showReset}) => {
   const [isBusy, setIsBusy] = useState(false);
   const [forgetPass] = useFogetPasswordMutation()
   const {
@@ -26,6 +29,8 @@ const ForgetForm = () => {
       .then((res:any) => {
         if (res.data.status === "success") {
           toast.success(res.data.message)
+          setIsBusy(false);
+          showReset()
         }else {
           toast.error(res.error.data.message);
           setIsBusy(false);

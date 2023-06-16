@@ -10,8 +10,8 @@ import { toast } from "react-toastify";
 const AccountSuccess: AppPage = () => {
   const [showSuccess, setShowSuccess] = useState<boolean>(false);
   const [showFailure, setShowFailure] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
   const router = useRouter();
-  console.log(router.query.token);
 
   const token = router?.query?.token ? Number(router?.query?.token) : 0;
   const [verify] = useVerifyTokenMutation();
@@ -24,16 +24,18 @@ const AccountSuccess: AppPage = () => {
       .then((res: any) => {
         if (res.data.status === "success") {
           toast.success(res.data.message);
+          setLoading(false);
           setShowSuccess(true);
         }
       })
       .catch((err) => {
-          setShowFailure(true)
+        setLoading(false);
+        setShowFailure(true);
       });
   };
 
   useEffect(() => {
-    if(token !== 0){
+    if (token !== 0) {
       verifyToken();
     }
   }, [token]);
@@ -52,9 +54,19 @@ const AccountSuccess: AppPage = () => {
             />
           </Link>
           <div className="text-center mt-16 lg:mt-16">
-            {
-              showFailure && (
-                <div className="text-center mt-8 lg:mt-16">
+            {loading && (
+              <div>
+                <Image
+                  src="https://res.cloudinary.com/dic7regoe/image/upload/v1686899448/sinechat/loading_gr5fom.gif"
+                  alt="logo"
+                  className="w-48 lg:w-[250px] mx-auto"
+                  width={400}
+                  height={400}
+                />
+              </div>
+            )}
+            {showFailure && (
+              <div className="text-center mt-8 lg:mt-16">
                 <Image
                   src="https://res.cloudinary.com/dic7regoe/image/upload/v1686776238/sinechat/Group_43451_2_kthos3.png"
                   alt="logo"
@@ -68,11 +80,10 @@ const AccountSuccess: AppPage = () => {
                 </p>
                 <p className="mt-4">
                   Click to be redirected to the{" "}
-                  <Link href="/auth/login">login page</Link>
+                  <Link href="/auth/login" className="text-primary">login page</Link>
                 </p>
               </div>
-              )
-            }
+            )}
             {showSuccess && (
               <div className="text-center mt-8 lg:mt-16">
                 <Image
@@ -88,7 +99,7 @@ const AccountSuccess: AppPage = () => {
                 </p>
                 <p className="mt-4">
                   You will now be redirected to the{" "}
-                  <Link href="/auth/login">login page</Link>
+                  <Link href="/auth/login" className="text-primary">login page</Link>
                 </p>
               </div>
             )}

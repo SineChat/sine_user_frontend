@@ -71,13 +71,10 @@ export const authApiSlice = apiSlice.injectEndpoints({
     }),
 
 
-    resetPassword: builder.mutation({
+    resetPassword: builder.query({
       query: (payload) => ({
         url: ENDPOINT.RESET_PASSWORD,
-        headers: {
-          Authorization: requestAuthorization(),
-        },
-        body: { ...payload },
+        body: payload ,
         method: ENDPOINT.HTTP_METHODS.POST,
       }),
     }),
@@ -89,7 +86,7 @@ export const {
   useLazyLoginQuery,
   useRegisterMutation,
   useLazyLogoutQuery,
-  useResetPasswordMutation,
+  useLazyResetPasswordQuery,
   useRequestVerificationMutation,
   useVerifyTokenMutation,
   useFogetPasswordMutation
