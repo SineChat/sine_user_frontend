@@ -94,7 +94,7 @@ const SignupForm = () => {
             rules={{
               required: {
                 value: true,
-                message: "Please enter your email",
+                message: "Please enter your First Name",
               },
             }}
             render={({ field }) => (
@@ -115,7 +115,7 @@ const SignupForm = () => {
             rules={{
               required: {
                 value: true,
-                message: "Please enter your email",
+                message: "Please enter your Last Name",
               },
             }}
             render={({ field }) => (
