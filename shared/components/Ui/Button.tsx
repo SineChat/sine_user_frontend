@@ -29,7 +29,7 @@ const Button: React.FC<Props> = ({
       {isBusy ? (
           "loading"
         ) : capitalizeTitle ? (
-          title.toUpperCase()
+          <span className="uppercase">{title}</span>
         ) : (
           title
         )}
