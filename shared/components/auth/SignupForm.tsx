@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import TextInput, { InputType } from "../Ui/TextInput";
 import Button from "../Ui/Button";
-import { useRegisterMutation, useRequestVerificationMutation } from "@/services/api/authSlice";
+import { useLazyRegisterQuery, useRequestVerificationMutation } from "@/services/api/authSlice";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import { ScaleSpinner } from "../Ui/Loaders";
 
 const SignupForm = () => {
   const [isBusy, setIsBusy] = useState(false);
-  const [signup] = useRegisterMutation();
+  const [signup] = useLazyRegisterQuery();
   const [sendVerify] = useRequestVerificationMutation()
   const router = useRouter();
   const {
@@ -34,11 +34,12 @@ const SignupForm = () => {
     setIsBusy(true);
     await signup(data)
       .then((res:any) => {
-        if (res.data.status === "success") {
+        console.log(res);
+        if (res.isSuccess) {
           router.push(`/auth/signup-success?email=${data.email}`);
           const payload = {
             email: data.email,
-            redirect_url: "http://https://www.sinechat.com/auth/verify-email"
+            redirect_url: "https://www.sinechat.com/auth/verify-email"
           }
           sendVerify(payload)
           .then((res:any) => {
@@ -51,10 +52,10 @@ const SignupForm = () => {
           .catch(() => {})
           toast.success(res.data.message);
           setIsBusy(false);
-        }else {
+        }else if(res.isError){
           toast.error(res.error.data.message);
           setIsBusy(false);
-        }
+        }else{}
       })
       .catch((err) => {
         toast.error(err?.error?.data?.message);

@@ -5,11 +5,13 @@ import Button from "../Ui/Button";
 import { useFogetPasswordMutation } from "@/services/api/authSlice";
 import { toast } from "react-toastify";
 import { ScaleSpinner } from "../Ui/Loaders";
+import { useRouter } from "next/router";
 
 interface Props {
   showReset: () => void
 }
 const ForgetForm:FC<Props> = ({showReset}) => {
+  const router = useRouter()
   const [isBusy, setIsBusy] = useState(false);
   const [forgetPass] = useFogetPasswordMutation()
   const {
@@ -29,6 +31,9 @@ const ForgetForm:FC<Props> = ({showReset}) => {
       .then((res:any) => {
         if (res.data.status === "success") {
           toast.success(res.data.message)
+          setTimeout(() => {
+            router.push('/auth/reset-password')
+          }, 2000);
           setIsBusy(false);
           showReset()
         }else {
