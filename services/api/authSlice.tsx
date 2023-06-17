@@ -18,7 +18,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
       keepUnusedDataFor: ENDPOINT.CACHE_LIFETIME.DEFAULT,
     }),
 
-    register: builder.mutation<
+    register: builder.query<
       SignupResult | ErrorResult,
       SignupInput
     >({
@@ -84,7 +84,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
 
 export const {
   useLazyLoginQuery,
-  useRegisterMutation,
+  useLazyRegisterQuery,
   useLazyLogoutQuery,
   useLazyResetPasswordQuery,
   useRequestVerificationMutation,

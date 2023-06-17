@@ -34,7 +34,7 @@ const LoginForm = () => {
     setIsBusy(true);
     await login(data)
       .then((res:any) => {
-        if (res.data.status === "success") {
+        if (res.isSuccess) {
           dispatch(
             saveUser({
                 token: res.data.data.token,
