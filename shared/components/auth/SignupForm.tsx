@@ -34,7 +34,6 @@ const SignupForm = () => {
     setIsBusy(true);
     await signup(data)
       .then((res:any) => {
-        console.log(res);
         if (res.isSuccess) {
           router.push(`/auth/signup-success?email=${data.email}`);
           const payload = {
