@@ -7,13 +7,10 @@ import { toast } from "react-toastify";
 import { ScaleSpinner } from "../Ui/Loaders";
 import { useRouter } from "next/router";
 
-interface Props {
-  showReset: () => void
-}
-const ForgetForm:FC<Props> = ({showReset}) => {
-  const router = useRouter()
+const ForgetForm = () => {
+  const router = useRouter();
   const [isBusy, setIsBusy] = useState(false);
-  const [forgetPass] = useFogetPasswordMutation()
+  const [forgetPass] = useFogetPasswordMutation();
   const {
     control,
     handleSubmit,
@@ -23,20 +20,20 @@ const ForgetForm:FC<Props> = ({showReset}) => {
     mode: "onChange",
     defaultValues: {
       email: "",
+      redirect_url: `${process.env.NEXT_PUBLIC_BASE_HOME}/auth/reset-password`,
     },
   });
-  const onSubmit = async (data:any) => {
+  const onSubmit = async (data: any) => {
     setIsBusy(true);
     await forgetPass(data)
-      .then((res:any) => {
+      .then((res: any) => {
         if (res.data.status === "success") {
-          toast.success(res.data.message)
+          toast.success(res.data.message);
           setTimeout(() => {
-            router.push('/auth/reset-password')
+            router.push(`/auth/forget-success?email=${data.email}`);
           }, 2000);
           setIsBusy(false);
-          showReset()
-        }else {
+        } else {
           toast.error(res.error.data.message);
           setIsBusy(false);
         }
@@ -71,7 +68,12 @@ const ForgetForm:FC<Props> = ({showReset}) => {
           />
         </div>
         <div className="mt-12">
-          <Button title={isBusy ? <ScaleSpinner size={14} color="white"/> : "Continue"} disabled={!isValid} />
+          <Button
+            title={
+              isBusy ? <ScaleSpinner size={14} color="white" /> : "Continue"
+            }
+            disabled={!isValid}
+          />
         </div>
       </form>
     </div>

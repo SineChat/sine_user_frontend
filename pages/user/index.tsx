@@ -51,7 +51,7 @@ const DashboardHome: AppPage = () => {
         <div className="w-full mt-12 flex justify-center">
           <div>
             <p className="text-center lg:text-xl">Recent Activity</p>
-            <div className="grid lg:grid-cols-3 gap-x-5 mt-8">
+            <div className="grid lg:grid-cols-3 gap-6 mt-8">
               <div className="border border-[#D7DCE0] rounded-lg p-3 lg:p-5 bg-[#FAFBFF]">
                 <p className="text-gray-500 fs-500">Total No Of Created Bots</p>
                 <p className="text-xl">1,200</p>

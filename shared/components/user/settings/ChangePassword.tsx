@@ -1,20 +1,17 @@
 import React, { FC, useState } from "react";
+import { ScaleSpinner } from "../../Ui/Loaders";
 import { Controller, useForm } from "react-hook-form";
-import TextInput, { InputType } from "../Ui/TextInput";
-import Button from "../Ui/Button";
-import OTPInput from "react-otp-input";
-import {   useFogetPasswordMutation, useLazyResetPasswordQuery } from "@/services/api/authSlice";
 import { toast } from "react-toastify";
-import { FadeSpinner, ScaleSpinner } from "../Ui/Loaders";
-import { useRouter } from "next/router";
+import TextInput, { InputType } from "../../Ui/TextInput";
+import Button from "../../Ui/Button";
+import { useLazyChangePasswordQuery } from "@/services/api/authSlice";
 
 interface Props {
-  token: string | string[] | undefined
+  close: () => void
 }
-const ResetForm:FC<Props> = ({token}) => {
+const ChangePassword:FC<Props> = ({close}) => {
   const [isBusy, setIsBusy] = useState(false);
-  const router = useRouter()
-  const [ reset ] =   useLazyResetPasswordQuery()
+  const [ changePassword ] =   useLazyChangePasswordQuery()
   
   const {
     control,
@@ -25,24 +22,20 @@ const ResetForm:FC<Props> = ({token}) => {
   } = useForm({
     mode: "onChange",
     defaultValues: {
-      password: "",
+        old_password: "",
+        new_password: "",
       confirm_password: "",
     },
   });
 
   const onSubmit = async (data:any) => {
-    setIsBusy(true);
-    const payload = {
-      email: data.email,
-      password: data.password,
-      token: Number(token)
-    }
-    await reset(payload)
+    setIsBusy(true)
+    await changePassword(data)
       .then((res:any) => {
         if (res.isSuccess) {
           toast.success(res.data.message)
           setIsBusy(false);
-          router.push("/auth/login")
+          close()
         }else {
           toast.error(res.error.data.message);
           setIsBusy(false);
@@ -56,9 +49,30 @@ const ResetForm:FC<Props> = ({token}) => {
   return (
     <div>
       <form className="" onSubmit={handleSubmit(onSubmit)}>
+      <div className="mt-6">
+          <Controller
+            name="old_password"
+            control={control}
+            rules={{
+              required: {
+                value: true,
+                message: "Password is required",
+              },
+            }}
+            render={({ field }) => (
+              <TextInput
+                label="New Password"
+                placeholder="*********"
+                error={errors.old_password?.message}
+                type={InputType.password}
+                {...field}
+              />
+            )}
+          />
+        </div>
         <div className="mt-6">
           <Controller
-            name="password"
+            name="new_password"
             control={control}
             rules={{
               required: {
@@ -74,7 +88,7 @@ const ResetForm:FC<Props> = ({token}) => {
               <TextInput
                 label="New Password"
                 placeholder="*********"
-                error={errors.password?.message}
+                error={errors.new_password?.message}
                 type={InputType.password}
                 {...field}
               />
@@ -87,7 +101,7 @@ const ResetForm:FC<Props> = ({token}) => {
             control={control}
             rules={{
               validate: (value) =>
-                value === watch("password") || "Passwords do not match",
+                value === watch("new_password") || "Passwords do not match",
             }}
             render={({ field }) => (
               <TextInput
@@ -102,7 +116,7 @@ const ResetForm:FC<Props> = ({token}) => {
         </div>
         <div className="mt-12">
           <Button
-            title={isBusy ?  <ScaleSpinner size={14} color="white"/> : "Reset Password"}
+            title={isBusy ?  <ScaleSpinner size={14} color="white"/> : "Change Password"}
             disabled={!isValid}
           />
         </div>
@@ -111,4 +125,4 @@ const ResetForm:FC<Props> = ({token}) => {
   );
 };
 
-export default ResetForm;
+export default ChangePassword;

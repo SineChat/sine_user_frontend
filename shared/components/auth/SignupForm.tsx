@@ -38,7 +38,7 @@ const SignupForm = () => {
           router.push(`/auth/signup-success?email=${data.email}`);
           const payload = {
             email: data.email,
-            redirect_url: "https://www.sinechat.com/auth/verify-email"
+            redirect_url: `${process.env.NEXT_PUBLIC_BASE_HOME}/auth/verify-email`
           }
           sendVerify(payload)
           .then((res:any) => {
