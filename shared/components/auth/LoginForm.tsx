@@ -39,9 +39,10 @@ const LoginForm = () => {
             saveUser({
                 token: res.data.data.token,
                 firstname: res.data.data.user.firstname,
-                lastname: res.data.data.user.lasttname,
+                lastname: res.data.data.user.lastname,
                 id: res.data.data.user.id,
                 email: res.data.data.user.email,
+                phone: res.data.data.user.phone
           }))
           storeLocalToken("token", res.data.data.token) 
           toast.success(res.data.message)

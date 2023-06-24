@@ -1,5 +1,3 @@
-import ForgetForm from "@/shared/components/auth/ForgetForm";
-import LoginForm from "@/shared/components/auth/LoginForm";
 import ResetForm from "@/shared/components/auth/ResetForm";
 import { AppPage } from "@/shared/components/layouts/Types";
 import Image from "next/image";
@@ -9,7 +7,7 @@ import React from "react";
 
 const ResetPassword: AppPage = () => {
   const router = useRouter();
-  const email = router.query.email
+  const token = router.query.token
   
   return (
     <>
@@ -29,7 +27,7 @@ const ResetPassword: AppPage = () => {
                 <p className="mt-4">Use your email or phone number to receive an OTP to reset your password</p>
           </div>
           <div className="mt-8 lg:mt-16 lg:w-11/12 mx-auto">
-            <ResetForm/>
+            <ResetForm token={token}/>
           </div>
         </div>
       </div>

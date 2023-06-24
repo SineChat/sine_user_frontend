@@ -1,28 +1,33 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { AppPage } from "@/shared/components/layouts/Types";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useRequestVerificationMutation } from "@/services/api/authSlice";
+import { useFogetPasswordMutation } from "@/services/api/authSlice";
 import { toast } from "react-toastify";
+import { ScaleSpinner } from "@/shared/components/Ui/Loaders";
 
-const SignupSuccess: AppPage = () => {
+const ForgetSuccess: AppPage = () => {
   const router = useRouter();
   const email = router.query.email && router.query.email;
-  const [sendVerify] = useRequestVerificationMutation();
+  const [isBusy, setIsBusy] = useState<boolean>(false);
+  const [forgetPass] = useFogetPasswordMutation();
 
-  const resendMail = () => {
+  const resendPasswordReset = () => {
+    setIsBusy(true);
     const payload = {
       email: email,
-      redirect_url: `${process.env.NEXT_PUBLIC_BASE_HOME}/auth/verify-email`,
+      redirect_url: `${process.env.NEXT_PUBLIC_BASE_HOME}/auth/reset-password`,
     };
-    sendVerify(payload)
+    forgetPass(payload)
       .then((res: any) => {
         if (res.data.status === "success") {
           toast.success(res.data.message);
+          setIsBusy(false);
         } else {
           toast.error(res?.error?.data.message);
+          setIsBusy(false);
         }
       })
       .catch(() => {});
@@ -50,25 +55,34 @@ const SignupSuccess: AppPage = () => {
               height={400}
             />
             <p className="text-[#166A37] text-center text-lg lg:text-2xl fw-600 mt-6">
-              Account Creation Successful
+              Reset Password Sent
             </p>
             <p className="mt-4 text-center">
-              We have sent an email to {email} to confirm the validity of your
-              email address. After receiving the mail, click on the link
-              provided to complete your registration.
+              We have sent an email to {email} to reset your password. After
+              receiving the mail, click on the link provided to reset your
+              password.
             </p>
             <p className="text-center">
               If you have not receievd a mail{" "}
-              <span
-                className="text-primary whitespace-nowrap"
-                onClick={resendMail}
-              >
-                click to resend mail
-              </span>
+              {isBusy ? (
+                <ScaleSpinner size={14} color="#1e944d" />
+              ) : (
+                <span
+                  className="text-primary whitespace-nowrap"
+                  onClick={resendPasswordReset}
+                >
+                  click to resend mail
+                </span>
+              )}
             </p>
           </div>
           <div className="mt-6">
-              <p className="text-center">Return to <Link href='/' className="text-primary">homepage</Link></p>
+            <p className="text-center">
+              Return to{" "}
+              <Link href="/" className="text-primary">
+                homepage
+              </Link>
+            </p>
           </div>
         </div>
       </div>
@@ -76,5 +90,5 @@ const SignupSuccess: AppPage = () => {
   );
 };
 
-export default SignupSuccess;
-SignupSuccess.Layout = "Login";
+export default ForgetSuccess;
+ForgetSuccess.Layout = "Login";

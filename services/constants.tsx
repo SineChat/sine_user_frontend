@@ -26,3 +26,9 @@ export const REQUEST_CHANGE_PASSWORD = "/v1/password/request-reset"
 export const RESET_PASSWORD = "/v1/password/reset"
 export const REQUEST_VERIFICATION = "/v1/email/request-verification"
 export const VERIFY_TOKEN = "/v1/email/verify"
+export const UPDATE_USER = "/v1/user/update"
+
+// subscription
+
+export const GET_SUBSCRIPTION = "v1/subscription/get"
+

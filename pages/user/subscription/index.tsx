@@ -1,11 +1,14 @@
 import React from "react";
 import { AppPage } from "@/shared/components/layouts/Types";
 import Button from "@/shared/components/Ui/Button";
+import { useGetSubscriptionQuery } from "@/services/api/routineSlice";
 
 const Subscription: AppPage = () => {
+
+  const {data, isLoading} = useGetSubscriptionQuery()
   return (
     <>
-      <div>
+      <div className="pb-24 lg:pb-0">
         <div className="text-center">
           <p className="text-2xl lg:text-4xl lg:fw-6600">Subscription</p>
           <p className="mt-4 lg:text-2xl brown">
@@ -13,7 +16,7 @@ const Subscription: AppPage = () => {
           </p>
         </div>
         <div className="mt-12 lg:mt-20 grid lg:grid-cols-3 gap-x-12 gap-y-8">
-          <div className="bg-[#E3F9FF] rounded-lg lg:p-6">
+          <div className="bg-[#E3F9FF] rounded-lg p-4 lg:p-6">
             <p className="fw-500 text-xl">Free</p>
             <p className="mt-5 brown">
               Get started with access to SineChat basic features to engage up to
@@ -26,7 +29,7 @@ const Subscription: AppPage = () => {
               <Button title="GET STARTED" altClassName="w-full btn-like" />
             </div>
           </div>
-          <div className="bg-[#E3F9FF] rounded-lg  lg:p-6">
+          <div className="bg-[#E3F9FF] rounded-lg p-4  lg:p-6">
             <p className="fw-500 text-xl">Lite</p>
             <p className="mt-5 brown">
               Get started with access to all the SineChat features to engage up
@@ -39,7 +42,7 @@ const Subscription: AppPage = () => {
               <Button title="GET STARTED" altClassName="w-full btn-like" />
             </div>
           </div>
-          <div className="bg-[#0B1B2B] rounded-lg  text-white lg:p-6">
+          <div className="bg-[#0B1B2B] rounded-lg p-4  text-white lg:p-6">
             <p className="fw-500 text-xl">Lite</p>
             <p className="mt-5">
               Get started with access to all the SineChat features to engage up

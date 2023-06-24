@@ -70,12 +70,33 @@ export const authApiSlice = apiSlice.injectEndpoints({
       }),
     }),
 
+    changePassword: builder.query({
+      query: (payload) => ({
+        url: ENDPOINT.CHANGE_PASSWORD,
+        body: payload ,
+        method: ENDPOINT.HTTP_METHODS.POST,
+        headers: {
+          Authorization: requestAuthorization(),
+        },
+      }),
+    }),
 
     resetPassword: builder.query({
       query: (payload) => ({
         url: ENDPOINT.RESET_PASSWORD,
         body: payload ,
         method: ENDPOINT.HTTP_METHODS.POST,
+      }),
+    }),
+
+    updateUser: builder.query({
+      query: (payload) => ({
+        url: ENDPOINT.UPDATE_USER,
+        body: payload ,
+        method: ENDPOINT.HTTP_METHODS.POST,
+        headers: {
+          Authorization: requestAuthorization(),
+        },
       }),
     }),
   }),
@@ -89,5 +110,7 @@ export const {
   useLazyResetPasswordQuery,
   useRequestVerificationMutation,
   useVerifyTokenMutation,
-  useFogetPasswordMutation
+  useFogetPasswordMutation,
+  useLazyChangePasswordQuery,
+  useLazyUpdateUserQuery
 } = authApiSlice;
