@@ -19,7 +19,7 @@ const SettingsPage: AppPage = () => {
   } = useModal();
   return (
     <>
-      <div>
+      <div className="pb-16 lg:pb-0">
         <div className="text-center">
           <p className="text-2xl lg:text-4xl lg:fw-6600">Settings</p>
           <p className="mt-4 lg:text-2xl brown">

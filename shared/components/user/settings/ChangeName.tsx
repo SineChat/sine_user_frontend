@@ -29,6 +29,8 @@ const UpdateProfile:FC<Props> = ({close, user}) => {
     defaultValues: {
         firstname: user.firstname,
         lastname: user.lastname,
+        phone: user.phone,
+        country: user.country,
     },
   });
 
@@ -42,6 +44,8 @@ const UpdateProfile:FC<Props> = ({close, user}) => {
                     ...store.getState().user.user,
                     firstname: data.firstname,
                     lastname: data.lastname,
+                    phone: data.phone,
+                    country: data.country
               }))
           toast.success(res.data.message)
           setIsBusy(false);
@@ -60,7 +64,8 @@ const UpdateProfile:FC<Props> = ({close, user}) => {
   return (
     <div>
       <form className="" onSubmit={handleSubmit(onSubmit)}>
-      <div className="mt-6">
+        <div className="grid lg:grid-cols-2 gap-4">
+        <div className="">
           <Controller
             name="firstname"
             control={control}
@@ -80,7 +85,7 @@ const UpdateProfile:FC<Props> = ({close, user}) => {
             )}
           />
         </div>
-        <div className="mt-6">
+        <div className="">
           <Controller
             name="lastname"
             control={control}
@@ -100,6 +105,50 @@ const UpdateProfile:FC<Props> = ({close, user}) => {
               />
             )}
           />
+        </div>
+        </div>
+        <div className="grid lg:grid-cols-2 gap-4 mt-4">
+        <div className="">
+          <Controller
+            name="phone"
+            control={control}
+            rules={{
+              required: {
+                value: false,
+                message: "",
+              },
+            }}
+            render={({ field }) => (
+              <TextInput
+                label="Phone Number"
+                error={errors.phone?.message}
+                type={InputType.text}
+                {...field}
+              />
+            )}
+          />
+        </div>
+        <div className="">
+          <Controller
+            name="country"
+            control={control}
+            rules={{
+              required: {
+                value: false,
+                message: ""
+              },
+            }}
+            render={({ field }) => (
+              <TextInput
+                label="Country"
+                placeholder=""
+                error={errors.lastname?.message}
+                type={InputType.text}
+                {...field}
+              />
+            )}
+          />
+        </div>
         </div>
         <div className="mt-12">
           <Button
