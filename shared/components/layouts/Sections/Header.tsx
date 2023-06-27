@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useAppSelector } from "@/shared/redux/store";
+import logo2 from '../../../../public/logo2.svg'
 
 const Header = () => {
   const auth = useAppSelector((state) => state.user.user.token);
@@ -12,7 +13,7 @@ const Header = () => {
           <div className="flex items-center justify-between py-1 lg:py-5 pl-3 pr-1 lg:px-8">
             <div className="logo">
               <Image
-                src="https://res.cloudinary.com/dic7regoe/image/upload/v1685766783/sinechat/Frame_128_1_fh5xlc.png"
+                src={logo2}
                 alt="logo"
                 className="w-28 lg:w-40"
                 width={100}

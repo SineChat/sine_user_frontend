@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useRequestVerificationMutation } from "@/services/api/authSlice";
 import { toast } from "react-toastify";
+import logo from "../../public/logo.svg"
 
 const SignupSuccess: AppPage = () => {
   const router = useRouter();
@@ -34,7 +35,7 @@ const SignupSuccess: AppPage = () => {
         <div className="lg:w-5/12 mx-auto">
           <Link href="/">
             <Image
-              src="https://res.cloudinary.com/dic7regoe/image/upload/v1685784940/sinechat/Frame_128_2_owb6zz.png"
+              src={logo}
               alt="logo"
               className="w-48 lg:w-96 mx-auto"
               width={400}

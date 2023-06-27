@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import ForgetForm from "@/shared/components/auth/ForgetForm";
 import { AppPage } from "@/shared/components/layouts/Types";
+import logo from "../../public/logo.svg"
 
 
 const ForgetPassword: AppPage = () => {
@@ -12,7 +13,7 @@ const ForgetPassword: AppPage = () => {
         <div className="lg:w-5/12 mx-auto">
           <Link href="/">
             <Image
-              src="https://res.cloudinary.com/dic7regoe/image/upload/v1685784940/sinechat/Frame_128_2_owb6zz.png"
+              src={logo}
               alt="logo"
               className="w-48 lg:w-96 mx-auto"
               width={400}

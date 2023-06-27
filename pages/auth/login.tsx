@@ -1,8 +1,9 @@
+import React from "react";
 import LoginForm from "@/shared/components/auth/LoginForm";
 import { AppPage } from "@/shared/components/layouts/Types";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import logo from "../../public/logo.svg"
 
 const Login: AppPage = () => {
   return (
@@ -11,7 +12,7 @@ const Login: AppPage = () => {
         <div className="lg:w-5/12 mx-auto">
           <Link href="/">
             <Image
-              src="https://res.cloudinary.com/dic7regoe/image/upload/v1685784940/sinechat/Frame_128_2_owb6zz.png"
+              src={logo}
               alt="logo"
               className="w-48 lg:w-96 mx-auto"
               width={400}
