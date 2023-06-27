@@ -20,7 +20,7 @@ const ResetPassword: AppPage = () => {
               alt="logo"
               className="w-48 lg:w-96 mx-auto"
               width={400}
-              height={400}
+              height={100}
             />
           </Link>
           <div className="text-center mt-8 lg:mt-16">
